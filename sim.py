@@ -4,6 +4,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 import re
 import sys
+from fusion_module import FusionModule, AdvancedFusionModule
 
 FACTS = [
     "Paris is the capital and largest city of France.",
@@ -20,10 +21,16 @@ FACTS = [
 
 
 class SIM:
-    def __init__(self, model="gemma3:1b"):
+    def __init__(self, model="gemma3:1b", use_advanced_fusion=False):
         self.model = model
         self.embed_model = SentenceTransformer("all-MiniLM-L6-v2")
         self.facts = FACTS
+
+        if use_advanced_fusion:
+            self.fusion = AdvancedFusionModule()
+        else:
+            self.fusion = FusionModule()
+
         self._build_index()
 
     def _build_index(self):
@@ -52,9 +59,8 @@ class SIM:
         )
         return response
 
-    def run(self, prompt):
+    def run(self, prompt, use_fusion=True):
         buffer = ""
-        injected_fact = None
         final_prompt = prompt
 
         print("Streaming output:\n")
@@ -73,12 +79,24 @@ class SIM:
                 print(f"\n\n[RETRIEVE: Detected query: '{query}']")
 
                 fact = self.retrieve(query)
-                injected_fact = fact
                 print(f"[RETRIEVE: Retrieved fact: '{fact}']\n")
+
+                if use_fusion:
+                    fusion_result = self.fusion.fuse(prompt, query, fact)
+                    print(f"[FUSION: Strategy = {fusion_result['type']}]")
+                    print(f"[FUSION: Confidence = {fusion_result['confidence']:.2f}]\n")
+
+                    new_prompt = fusion_result["fused_prompt"]
+                    injected_context = fusion_result["context"]
+                else:
+                    new_prompt = prompt.replace(f"[RETRIEVE: {query}]", "")
+                    injected_context = fact
+
                 print("Continuing with context...\n")
 
-                new_prompt = prompt.replace(f"[RETRIEVE: {query}]", "")
-                new_response = self.stream_generate(new_prompt, injected_context=fact)
+                new_response = self.stream_generate(
+                    new_prompt, injected_context=injected_context
+                )
 
                 for inner_chunk in new_response:
                     inner_token = inner_chunk["response"]
@@ -91,8 +109,8 @@ class SIM:
 
 
 if __name__ == "__main__":
-    print("Initializing SIM with Ollama (gemma3:1b) and FAISS...")
-    sim = SIM()
+    print("Initializing SIM with Ollama (gemma3:1b), FAISS, and Fusion Module...")
+    sim = SIM(use_advanced_fusion=True)
 
     test_prompt = (
         "The capital of France is [RETRIEVE: capital of France]. It is known for"
@@ -101,4 +119,4 @@ if __name__ == "__main__":
     print(f"Running test with prompt:\n{test_prompt}\n")
     print("=" * 60)
 
-    sim.run(test_prompt)
+    sim.run(test_prompt, use_fusion=True)
