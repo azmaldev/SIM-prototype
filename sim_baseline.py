@@ -4,7 +4,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 import re
 import sys
-from fusion_module import FusionModule, AdvancedFusionModule
+from fusion_module_simple import FusionModule
 
 FACTS = [
     "Paris is the capital and largest city of France.",
@@ -21,15 +21,12 @@ FACTS = [
 
 
 class SIM:
-    def __init__(self, model="gemma3:1b", use_advanced_fusion=False):
+    def __init__(self, model="gemma3:1b"):
         self.model = model
         self.embed_model = SentenceTransformer("all-MiniLM-L6-v2")
         self.facts = FACTS
 
-        if use_advanced_fusion:
-            self.fusion = AdvancedFusionModule()
-        else:
-            self.fusion = FusionModule()
+        self.fusion = FusionModule()
 
         self._build_index()
 
@@ -110,7 +107,7 @@ class SIM:
 
 if __name__ == "__main__":
     print("Initializing SIM with Ollama (gemma3:1b), FAISS, and Fusion Module...")
-    sim = SIM(use_advanced_fusion=True)
+    sim = SIM()
 
     test_prompt = (
         "The capital of France is [RETRIEVE: capital of France]. It is known for"

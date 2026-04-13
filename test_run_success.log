@@ -1,0 +1,33 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Initializing SIM with Ollama (gemma3:1b), FAISS, and Fusion Module...
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|##########| 103/103 [00:00<00:00, 9235.20it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|##########| 103/103 [00:00<00:00, 8600.53it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Running test with prompt:
+The capital of France is [RETRIEVE: capital of France]. It is known for
+
+============================================================
+Streaming output:
+
+The capital of France is Paris. It is known for:
+
+*   **Art & Culture:** Home to world-class museums like the Louvre, the Musée d'Orsay, and numerous galleries.
+*   **Fashion:** A global fashion capital with iconic luxury brands and designers.
+*   **Romance & History:** Rich history, beautiful architecture, and a romantic atmosphere.
+*   **Food:** Famous for its culinary delights, including pastries, cheese, wine, and steak frites.
+*   **Magnolia:** The iconic wrought-iron lattice balconies that decorate many buildings throughout the city, creating a distinct Parisian aesthetic. 
+
+Would you like to know more about any of these aspects?

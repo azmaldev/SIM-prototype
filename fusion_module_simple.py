@@ -3,57 +3,20 @@ import numpy as np
 from typing import Tuple, Dict
 from sentence_transformers import SentenceTransformer
 
-import nltk
-from nltk import pos_tag, word_tokenize
-
-
-def _ensure_nltk_data():
-    resources_to_download = [
-        "averaged_perceptron_tagger_eng",
-        "punkt",
-    ]
-
-    for resource in resources_to_download:
-        try:
-            if "tagger" in resource:
-                nltk.data.find(f"taggers/{resource}")
-            else:
-                nltk.data.find(f"tokenizers/{resource}")
-        except LookupError:
-            try:
-                nltk.download(resource, quiet=True)
-            except Exception:
-                pass
-
-
-_ensure_nltk_data()
-
 
 class FusionModule:
     def __init__(self):
         self.embed_model = SentenceTransformer("all-MiniLM-L6-v2")
 
     def extract_key_entity(self, text: str) -> str:
-        try:
-            tokens = word_tokenize(text)
-            tagged = pos_tag(tokens)
+        words = text.split()
 
-            proper_nouns = [word for word, pos in tagged if pos == "NNP"]
-            if proper_nouns:
-                return proper_nouns[0]
+        for word in words:
+            clean_word = word.strip('.,;:!?"')
+            if clean_word and clean_word[0].isupper() and len(clean_word) > 1:
+                return clean_word
 
-            nouns = [word for word, pos in tagged if pos in ["NN", "NNS"]]
-            if nouns:
-                return nouns[0]
-
-            return tokens[0] if tokens else text
-
-        except Exception:
-            words = text.split()
-            for word in words:
-                if word and word[0].isupper():
-                    return word.strip(".,;:")
-            return words[0] if words else text
+        return words[0].strip('.,;:!?"') if words else text
 
     def _extract_query_context(self, prompt: str, query: str) -> Tuple[str, str, str]:
         pattern = rf"\[RETRIEVE:\s*{re.escape(query)}\]"
@@ -100,9 +63,3 @@ class FusionModule:
                 "context": retrieved_fact,
                 "confidence": confidence,
             }
-
-
-class AdvancedFusionModule(FusionModule):
-    def __init__(self, scoring_model="gpt2"):
-        super().__init__()
-        self.scoring_model = scoring_model

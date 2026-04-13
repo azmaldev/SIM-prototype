@@ -1,0 +1,175 @@
+{
+  "timestamp": "2026-04-13 23:34:22",
+  "model": "gemma3:1b",
+  "num_samples": 10,
+  "systems": {
+    "Baseline": {
+      "answers": [
+        {
+          "question": "What is the capital of France?",
+          "answer": "Paris",
+          "latency": 1.6789798736572266
+        },
+        {
+          "question": "Where is the Eiffel Tower?",
+          "answer": "The Eiffel Tower is in **Paris, France**. \n\nMore specifically, it\u2019s located on the Champ de Mars in ",
+          "latency": 2.7326080799102783
+        },
+        {
+          "question": "What is France known for?",
+          "answer": "France is known for a HUGE amount of things! Here\u2019s a breakdown of some of the most prominent things",
+          "latency": 4.31756591796875
+        },
+        {
+          "question": "When did the French Revolution happen?",
+          "answer": "The French Revolution happened between **1789 and 1799**. \n\nMore specifically, the main phases of th",
+          "latency": 4.2575318813323975
+        },
+        {
+          "question": "What is the capital of Germany?",
+          "answer": "Berlin\n",
+          "latency": 1.6633555889129639
+        },
+        {
+          "question": "What is the capital of Japan?",
+          "answer": "Tokyo",
+          "latency": 1.2461128234863281
+        },
+        {
+          "question": "Who won the World Cup in 1998?",
+          "answer": "Brazil won the World Cup in 1998.",
+          "latency": 1.9515469074249268
+        },
+        {
+          "question": "What is in the Louvre Museum?",
+          "answer": "The Louvre Museum in Paris is home to an absolutely vast collection! Here\u2019s a breakdown of what\u2019s in",
+          "latency": 4.151819944381714
+        },
+        {
+          "question": "How many people speak French?",
+          "answer": "As of 2023, approximately 30-40 million people speak French as a first or second language. However, ",
+          "latency": 4.302741527557373
+        },
+        {
+          "question": "Is France visited by many tourists?",
+          "answer": "Yes, France is a hugely popular tourist destination globally. \n\n**Indeed, France is one of the most ",
+          "latency": 4.394495248794556
+        }
+      ],
+      "avg_latency": 3.0696757793426515,
+      "total_latency": 30.696757793426514
+    },
+    "RAG": {
+      "answers": [
+        {
+          "question": "What is the capital of France?",
+          "answer": "Paris",
+          "latency": 1.2129898071289062
+        },
+        {
+          "question": "Where is the Eiffel Tower?",
+          "answer": "Paris, France.",
+          "latency": 1.031083345413208
+        },
+        {
+          "question": "What is France known for?",
+          "answer": "France is known for its world-renowned cuisine.",
+          "latency": 1.2943713665008545
+        },
+        {
+          "question": "When did the French Revolution happen?",
+          "answer": "1789",
+          "latency": 1.223839282989502
+        },
+        {
+          "question": "What is the capital of Germany?",
+          "answer": "Berlin\n",
+          "latency": 1.1397671699523926
+        },
+        {
+          "question": "What is the capital of Japan?",
+          "answer": "Tokyo",
+          "latency": 1.1529409885406494
+        },
+        {
+          "question": "Who won the World Cup in 1998?",
+          "answer": "France.\n",
+          "latency": 1.731910228729248
+        },
+        {
+          "question": "What is in the Louvre Museum?",
+          "answer": "The Louvre Museum in Paris houses the Mona Lisa.",
+          "latency": 1.9400622844696045
+        },
+        {
+          "question": "How many people speak French?",
+          "answer": "Over 300 million people worldwide.",
+          "latency": 2.2809793949127197
+        },
+        {
+          "question": "Is France visited by many tourists?",
+          "answer": "Yes.",
+          "latency": 1.943098545074463
+        }
+      ],
+      "avg_latency": 1.4951042413711548,
+      "total_latency": 14.951042413711548
+    },
+    "SIM": {
+      "answers": [
+        {
+          "question": "What is the capital of France?",
+          "answer": "Paris",
+          "latency": 1.5402462482452393
+        },
+        {
+          "question": "Where is the Eiffel Tower?",
+          "answer": "The Eiffel Tower is in Paris, France.",
+          "latency": 2.0058491230010986
+        },
+        {
+          "question": "What is France known for?",
+          "answer": "France is known for a vast and rich array of things! Here are some of the most prominent things Fran",
+          "latency": 4.733378648757935
+        },
+        {
+          "question": "When did the French Revolution happen?",
+          "answer": "The French Revolution happened primarily between **1789 and 1799**.\n\nHere\u2019s a breakdown of the key p",
+          "latency": 4.224035978317261
+        },
+        {
+          "question": "What is the capital of Germany?",
+          "answer": "Berlin",
+          "latency": 1.2991783618927002
+        },
+        {
+          "question": "What is the capital of Japan?",
+          "answer": "Tokyo",
+          "latency": 1.4070851802825928
+        },
+        {
+          "question": "Who won the World Cup in 1998?",
+          "answer": "Brazil won the World Cup in 1998.",
+          "latency": 1.7546374797821045
+        },
+        {
+          "question": "What is in the Louvre Museum?",
+          "answer": "The Louvre Museum houses a vast and incredibly diverse collection of art and artifacts spanning cent",
+          "latency": 4.746813058853149
+        },
+        {
+          "question": "How many people speak French?",
+          "answer": "Approximately 300 million people speak French as a first or second language.",
+          "latency": 2.2891833782196045
+        },
+        {
+          "question": "Is France visited by many tourists?",
+          "answer": "Yes, France is a very popular tourist destination globally.\n",
+          "latency": 2.9056599140167236
+        }
+      ],
+      "avg_latency": 2.6906067371368407,
+      "total_latency": 26.906067371368408
+    }
+  }
+}

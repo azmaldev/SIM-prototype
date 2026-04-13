@@ -1,0 +1,56 @@
+{
+  "RAG": [
+    {
+      "question": "What is the capital of France?",
+      "answer": "Paris\n",
+      "latency": 1.6124303340911865
+    },
+    {
+      "question": "Where is the Eiffel Tower?",
+      "answer": "Paris, France.",
+      "latency": 1.2291646003723145
+    },
+    {
+      "question": "When did the French Revolution happen?",
+      "answer": "The French Revolution happened in **1789**.\n",
+      "latency": 1.503338098526001
+    },
+    {
+      "question": "What is the capital of Germany?",
+      "answer": "Berlin",
+      "latency": 1.1291956901550293
+    },
+    {
+      "question": "Who won the World Cup in 1998?",
+      "answer": "France.",
+      "latency": 1.519568920135498
+    }
+  ],
+  "SIM": [
+    {
+      "question": "What is the capital of France?",
+      "answer": "[RETRIEVE: The capital of France is Paris.]\n",
+      "latency": 4.204899549484253
+    },
+    {
+      "question": "Where is the Eiffel Tower?",
+      "answer": "[RETRIEVE: location of the Eiffel Tower] The Eiffel Tower is located in Paris, F",
+      "latency": 4.810506105422974
+    },
+    {
+      "question": "When did the French Revolution happen?",
+      "answer": "[RETRIEVE: date of the French Revolution] The French Revolution began in 1789.",
+      "latency": 5.501730918884277
+    },
+    {
+      "question": "What is the capital of Germany?",
+      "answer": "Okay, let's talk about Berlin! It\u2019s a truly fascinating and complex city with a ",
+      "latency": 6.578945875167847
+    },
+    {
+      "question": "Who won the World Cup in 1998?",
+      "answer": "[RETRIEVE: winner of the FIFA World Cup in 1998] France won the FIFA World Cup i",
+      "latency": 6.967221021652222
+    }
+  ]
+}
